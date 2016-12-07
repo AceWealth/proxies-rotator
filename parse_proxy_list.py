@@ -52,5 +52,5 @@ for line in open(filepath):
 
 with open("/etc/haproxy/haproxy.cfg", "w") as text_file:
     text_file.write(s)
-with open("/scripts/haproxy.cfg", "w") as text_file:
+with open("/app/haproxy.cfg", "w") as text_file:
     text_file.write(s)

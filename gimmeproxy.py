@@ -2,7 +2,8 @@ import asyncio
 import json
 import re
 import os
-from time import sleep, time
+from time import time
+from datetime import datetime
 from aiohttp import ClientSession, ProxyConnector, Timeout
 import requests
 
@@ -10,7 +11,7 @@ number_of_proxies = 100
 request_proxies = 15
 timeout = os.environ.get("PROXY_TIMEOUT")
 timeout = float(timeout) if timeout else 10.0
-filepath = os.environ.get("PROXY_FILE") or "./proxies.txt"
+filepath = os.environ.get("PROXY_FILE") or "./data/proxies.txt"
 
 proxies = []
 new_proxies = []
@@ -61,7 +62,7 @@ def get_proxy_servers(r):
                 'address': response['curl'],
                 'time': -1,
             })
-        except Exception:
+        except:
             continue
 
 
@@ -94,7 +95,7 @@ def load_old_proxies():
                 ips.add("http://%s" % line)
     except:
         pass
-    print("Loaded %s old proxies." % len(proxies))
+
 
 if __name__ == '__main__':
     load_old_proxies()
@@ -107,4 +108,4 @@ if __name__ == '__main__':
     with open(filepath, 'w') as f:
         for proxy in new:
             f.write("%s\n" % proxy)
-    print("Saved %s new proxies." % len(new))
+    print("{} - {} active proxies.".format(datetime.now(), len(new)))
