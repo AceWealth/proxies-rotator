@@ -108,4 +108,5 @@ if __name__ == '__main__':
     with open(filepath, 'w') as f:
         for proxy in new:
             f.write("%s\n" % proxy)
-    print("{} - {} active proxies.".format(datetime.now(), len(new)))
+    print("{} - {} active proxies.".format(
+        datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%SZ"), len(new)))

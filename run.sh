@@ -7,5 +7,5 @@ do
 	python /app/parse_proxy_list.py
 	service haproxy restart
 	iptables -D INPUT -p tcp --dport $PORT 20020 -j DROP
-	sleep 600
+	sleep 1800
 done
